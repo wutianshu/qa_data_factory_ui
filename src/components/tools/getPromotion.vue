@@ -2,7 +2,7 @@
   <div>
     <el-row>
       <el-col :span="16" :offset="4">
-        <el-card class="box-card" v-loading="loading">
+        <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span>打开对话框-获取表格</span>
           </div>
@@ -13,6 +13,7 @@
             width="80%"
             :before-close="handleClose">
             <el-table
+               v-loading="loading"
               :data="tableData"
               style="width: 100%">
               <el-table-column
@@ -74,7 +75,8 @@ export default {
     return {
       dialogVisible: false,
       tableData: [],
-      count: 0
+      count: 0,
+      loading: false
     }
   },
   methods: {
@@ -86,6 +88,7 @@ export default {
         .catch(_ => {})
     },
     handleCurrentChange (val) {
+      this.loading = true
       axios({
         method: 'get',
         url: '/tools/getPromotion/?page=' + val // 访问vue的8080端口，在config/index.js中设置转发到8000端口，并设置不跨域
@@ -94,12 +97,15 @@ export default {
           if (response.data.returnCode === 0) {
             this.tableData = response.data.renturnData.data
             this.count = response.data.renturnData.count
+            this.loading = false
           } else {
             console.log(response.data)
+            this.loading = false
           }
         })
         .catch((error) => {
           console.log(error)
+          this.loading = false
         })
     }
   },

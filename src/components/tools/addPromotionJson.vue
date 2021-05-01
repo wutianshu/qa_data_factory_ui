@@ -4,7 +4,7 @@
       <el-col :span="16" :offset="4">
         <el-card class="box-card" v-loading="loading">
           <div slot="header" class="clearfix">
-            <span>新增活动-POST-json</span>
+            <span>新增活动-POST-json(父组件传参子组件)</span>
           </div>
           <el-form ref="form" :model="form" :rules="rules" label-width="80px">
           <el-form-item label="活动名称" prop="name">
@@ -102,9 +102,9 @@ export default {
         type: []
       },
       res: {returnCode: '', returnInfo: ''},
-      region: [],
-      resource: [],
-      type: [],
+      // region: [],
+      // resource: [],
+      // type: [],
       loading: false,
       alertInfo: {isShow: false, type: 'fail', txt: ''},
       interResult: 'success',
@@ -134,6 +134,7 @@ export default {
       }
     }
   },
+  props: ['region', 'type', 'resource'],
   methods: {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
@@ -174,50 +175,6 @@ export default {
     formInit (formName) {
       this.$refs[formName].resetFields()
     }
-  },
-  mounted () {
-    axios({
-      method: 'get',
-      url: '/tools/region/' // 访问vue的8080端口，在config/index.js中设置转发到8000端口，并设置不跨域
-    })
-      .then(response => {
-        if (response.data.returnCode === 0) {
-          this.region = response.data.returnInfo
-        } else {
-          console.log(response.data)
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    axios({
-      method: 'get',
-      url: '/tools/resource/' // 访问vue的8080端口，在config/index.js中设置转发到8000端口，并设置不跨域
-    })
-      .then(response => {
-        if (response.data.returnCode === 0) {
-          this.resource = response.data.returnInfo
-        } else {
-          console.log(response.data)
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    axios({
-      method: 'get',
-      url: '/tools/type/' // 访问vue的8080端口，在config/index.js中设置转发到8000端口，并设置不跨域
-    })
-      .then(response => {
-        if (response.data.returnCode === 0) {
-          this.type = response.data.returnInfo
-        } else {
-          console.log(response.data)
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
   }
 }
 </script>

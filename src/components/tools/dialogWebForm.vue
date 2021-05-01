@@ -4,7 +4,7 @@
       <el-col :span="16" :offset="4">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span>打开对话框，提交表单</span>
+            <span>打开对话框，提交表单(父组件传参子组件)</span>
           </div>
           <el-button type="text" @click="dialogVisible = true">打开对话框</el-button>
           <el-dialog
@@ -88,9 +88,9 @@ export default {
         desc: '',
         type: []
       },
-      region: [],
-      resource: [],
-      type: [],
+      // region: [],
+      // resource: [],
+      // type: [],
       loading: false,
       interResult: 'success',
       rules: {
@@ -119,6 +119,7 @@ export default {
       }
     }
   },
+  props: ['region', 'type', 'resource'],
   methods: {
     handleClose (done) {
       this.$confirm('确认关闭？')
@@ -176,51 +177,51 @@ export default {
         type: 'error'
       })
     }
-  },
-  mounted () {
-    axios({
-      method: 'get',
-      url: '/tools/region/' // 访问vue的8080端口，在config/index.js中设置转发到8000端口，并设置不跨域
-    })
-      .then(response => {
-        if (response.data.returnCode === 0) {
-          this.region = response.data.returnInfo
-        } else {
-          console.log(response.data)
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    axios({
-      method: 'get',
-      url: '/tools/resource/' // 访问vue的8080端口，在config/index.js中设置转发到8000端口，并设置不跨域
-    })
-      .then(response => {
-        if (response.data.returnCode === 0) {
-          this.resource = response.data.returnInfo
-        } else {
-          console.log(response.data)
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    axios({
-      method: 'get',
-      url: '/tools/type/' // 访问vue的8080端口，在config/index.js中设置转发到8000端口，并设置不跨域
-    })
-      .then(response => {
-        if (response.data.returnCode === 0) {
-          this.type = response.data.returnInfo
-        } else {
-          console.log(response.data)
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
   }
+  // mounted () {
+  //   axios({
+  //     method: 'get',
+  //     url: '/tools/region/' // 访问vue的8080端口，在config/index.js中设置转发到8000端口，并设置不跨域
+  //   })
+  //     .then(response => {
+  //       if (response.data.returnCode === 0) {
+  //         this.region = response.data.returnInfo
+  //       } else {
+  //         console.log(response.data)
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  //   axios({
+  //     method: 'get',
+  //     url: '/tools/resource/' // 访问vue的8080端口，在config/index.js中设置转发到8000端口，并设置不跨域
+  //   })
+  //     .then(response => {
+  //       if (response.data.returnCode === 0) {
+  //         this.resource = response.data.returnInfo
+  //       } else {
+  //         console.log(response.data)
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  //   axios({
+  //     method: 'get',
+  //     url: '/tools/type/' // 访问vue的8080端口，在config/index.js中设置转发到8000端口，并设置不跨域
+  //   })
+  //     .then(response => {
+  //       if (response.data.returnCode === 0) {
+  //         this.type = response.data.returnInfo
+  //       } else {
+  //         console.log(response.data)
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }
 }
 </script>
 

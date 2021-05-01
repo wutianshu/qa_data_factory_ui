@@ -4,9 +4,9 @@
       <el-col :span="16" :offset="4">
         <el-card class="box-card" v-loading="loading">
           <div slot="header" class="clearfix">
-            <span>身份证生成器-GET-params</span>
+            <span>打开对话框-获取表格</span>
           </div>
-          <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
+          <el-button type="text" @click="dialogVisible = true">获取活动信息</el-button>
           <el-dialog
             title="获取数据"
             :visible.sync="dialogVisible"

@@ -4,6 +4,7 @@
     <addPromotionForm></addPromotionForm>
     <addPromotionJson></addPromotionJson>
     <getPromotion></getPromotion>
+    <dialogWebForm></dialogWebForm>
   </div>
 </template>
 
@@ -12,10 +13,11 @@ import IdCards from '@/components/tools/IdCards'
 import addPromotionForm from '@/components/tools/addPromotionForm'
 import addPromotionJson from '@/components/tools/addPromotionJson'
 import getPromotion from '@/components/tools/getPromotion'
+import dialogWebForm from '@/components/tools/dialogWebForm'
 
 export default {
   name: 'tools',
-  components: {addPromotionForm, IdCards, addPromotionJson, getPromotion},
+  components: {addPromotionForm, IdCards, addPromotionJson, getPromotion, dialogWebForm},
   component: {}
 }
 </script>

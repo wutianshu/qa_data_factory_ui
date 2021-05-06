@@ -91,6 +91,23 @@ export default {
           this.loading = false
         })
     }
+  },
+  mounted () {
+    axios({
+      method: 'get',
+      url: '/tools/getPromotion/' // 访问vue的8080端口，在config/index.js中设置转发到8000端口，并设置不跨域
+    })
+      .then(response => {
+        if (response.data.returnCode === 0) {
+          this.tableData = response.data.renturnData.data
+          this.count = response.data.renturnData.count
+        } else {
+          console.log(response.data)
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 }
 </script>
